@@ -31,21 +31,27 @@ for i in graph:
 
 def djikstra(graph, start):
   distance = {}
+  finished = True
+  lowest_node = None
   for i in graph:
     distance[i] = float('inf')
     distance[start] = 0
     
-  for i in graph:
-    lowest = float('inf')
-    lowest_node = None
-    if i == start:
-      for j in graph[i]:
-        if float(graph[i][j]) < lowest:
-          lowest = float(graph[i][j])
-          lowest_node = j
-      distance[lowest_node] = graph[i][lowest_node]
-  print(distance)
-  
+  while finished:
+    
+    for i in graph:
+      print(lowest_node)
+      lowest_node = None
+      lowest = float('inf')
+      print(i)
+      if i == start:
+        for j in graph[i]:
+          if float(graph[i][j]) < lowest:
+            lowest = float(graph[i][j])
+            lowest_node = j
+        distance[lowest_node] = graph[i][lowest_node]
+    print(distance)
+    finished = False
 class Graph:
   def __init__(self, graph: dict = {}):
     self.graph = graph
@@ -68,7 +74,7 @@ G.add_edge("D", "B", 4)
 G.add_edge("D", "C", 30)
 
 
-djikstra(G.graph, 'B')
+djikstra(G.graph, 'E')
 
 
 """
